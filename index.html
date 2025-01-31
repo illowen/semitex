@@ -13,7 +13,7 @@
 </head>
 <body>
 
-	<section class="header">
+	<header class="header">
 		<div class="header-nav">
 			<div class="container">
 				<div class="header-nav__content">
@@ -65,20 +65,22 @@
 				</div>
 			</div>
 		</div>
+	</header>
 
-		<div class="header_center">
+	<div class="banner">
+		<div class="banner_center">
 			<div class="container">
-				<div class="header_center__left">
-					<div class="header_item">
+				<div class="banner_center__left">
+					<div class="banner_item">
 						<h1>Оптовые поставки</h1>
 						<span>электронных компонентов</span>
 						<h1>ИЗ КИТАЯ день в день</h1>
 					</div>
-					<div class="header_title">
+					<div class="banner_title">
 						<p>Комплексные поставки электронных компонентов и оборудования. Подберем аналоги популярных брендов из Европы в условиях санкций.</p>
 					</div>
-	
-					<div class="header_block">
+
+					<div class="banner_block">
 						<ul>
 							<li>Отсрочка платежей для постоянных клиентов</li>
 							<li>Бесплатная доставка по Москве и СПБ в течение 2х часов</li>
@@ -87,9 +89,9 @@
 					</div>
 				</div>
 
-				<div class="header-center__right">
-					<div class="header_form">
-						<div class="header_form_item">
+				<div class="banner-center__right">
+					<div class="banner_form">
+						<div class="banner_form_item">
 							<p>ЗАКАЖИТЕ <br>ОБРАТНЫЙ ЗВОНОК</p>
 						</div>
 						<form action="">
@@ -102,28 +104,28 @@
 												<input class="input-at" type="text" name="name-at" placeholder="Петров Петр">
 												<span class="focus-input-at">
 											</div>
-					
+
 											<div class="validate-input-at" data-validate="Обязательное поле">
 												<p>Ваш номер*</p>
 												<input class="input-at mask-phone form-control" type="text" name="email-at" placeholder="+7 (_ _ _) _ _ _-_ _-_ _"/>
 												<span class="focus-input-at">
 											</div>
-					
+
 											<div class="form-at--block">
-					
+
 												<label class="mcui-checkbox">
 													<img src="img/lock_icon.svg" alt="#">
 													<p>Мы гарантируем <a href="#">конфиденциальность данных</a></p>
 												</label>
-					
+
 												<div>
 													<button id="submit-at" class="button button--calypso"><span>Заказать звонок</span></button>
 												</div>
 											</div>
 										</div>
-					
+
 										<input type="hidden" name="subject-at" value="Тема формы">
-					
+
 									</div>
 								</div>
 							</div>
@@ -131,10 +133,9 @@
 					</div>
 				</div>
 			</div>
-			
 		</div>
+	</div>
 
-	</section>
 
 	<section class="section1">
 		<div class="container">
@@ -565,6 +566,7 @@
 	</div>
 
 	<script src="js/jquery.min.js"></script>
+	<script src="js/script.js"></script>
 	<script src="js/swiper.min.js"></script>
 	<script src="js/jquery.beefup.min.js"></script>
 	<script src="js/jquery.maskedinput.min.js"></script>
@@ -577,168 +579,5 @@
 			openSingle: true,
 		});
 	</script>
-
-	<script>
-		document.addEventListener('DOMContentLoaded', function() {
-
-			/* Записываем в переменные массив элементов-кнопок и подложку.
-               Подложке зададим id, чтобы не влиять на другие элементы с классом overlay*/
-			var modalButtons = document.querySelectorAll('.js-open-modal'),
-					overlay      = document.querySelector('.js-overlay-modal'),
-					closeButtons = document.querySelectorAll('.js-modal-close');
-
-
-			/* Перебираем массив кнопок */
-			modalButtons.forEach(function(item){
-
-				/* Назначаем каждой кнопке обработчик клика */
-				item.addEventListener('click', function(e) {
-
-					/* Предотвращаем стандартное действие элемента. Так как кнопку разные
-                       люди могут сделать по-разному. Кто-то сделает ссылку, кто-то кнопку.
-                       Нужно подстраховаться. */
-					e.preventDefault();
-
-					/* При каждом клике на кнопку мы будем забирать содержимое атрибута data-modal
-                       и будем искать модальное окно с таким же атрибутом. */
-					var modalId = this.getAttribute('data-modal'),
-							modalElem = document.querySelector('.modal[data-modal="' + modalId + '"]');
-
-
-					/* После того как нашли нужное модальное окно, добавим классы
-                       подложке и окну чтобы показать их. */
-					modalElem.classList.add('active');
-					overlay.classList.add('active');
-				}); // end click
-
-			}); // end foreach
-
-
-			closeButtons.forEach(function(item){
-
-				item.addEventListener('click', function(e) {
-					var parentModal = this.closest('.modal');
-
-					parentModal.classList.remove('active');
-					overlay.classList.remove('active');
-				});
-
-			}); // end foreach
-
-
-			document.body.addEventListener('keyup', function (e) {
-				var key = e.keyCode;
-
-				if (key == 27) {
-
-					document.querySelector('.modal.active').classList.remove('active');
-					document.querySelector('.overlay').classList.remove('active');
-				};
-			}, false);
-
-
-			overlay.addEventListener('click', function() {
-				document.querySelector('.modal.active').classList.remove('active');
-				this.classList.remove('active');
-			});
-
-
-
-
-		}); // end ready
-	</script>
-
-	<script>
-		const btnUp = {
-			el: document.querySelector('.btn-up'),
-			show() {
-				// удалим у кнопки класс btn-up_hide
-				this.el.classList.remove('btn-up_hide');
-			},
-			hide() {
-				// добавим к кнопке класс btn-up_hide
-				this.el.classList.add('btn-up_hide');
-			},
-			addEventListener() {
-				// при прокрутке содержимого страницы
-				window.addEventListener('scroll', () => {
-					// определяем величину прокрутки
-					const scrollY = window.scrollY || document.documentElement.scrollTop;
-					// если страница прокручена больше чем на 400px, то делаем кнопку видимой, иначе скрываем
-					scrollY > 400 ? this.show() : this.hide();
-				});
-				// при нажатии на кнопку .btn-up
-				document.querySelector('.btn-up').onclick = () => {
-					// переместим в начало страницы
-					window.scrollTo({
-						top: 0,
-						left: 0,
-						behavior: 'smooth'
-					});
-				}
-			}
-		}
-
-		btnUp.addEventListener();
-	</script>
-
-	<script>
-		var swiper = new Swiper(".mySwiperManufacture", {
-			slidesPerView: 5,
-			spaceBetween: 30,
-			effect: "slide",
-			navigation: {
-				nextEl: ".swiper-button-next",
-				prevEl: ".swiper-button-prev",
-			},
-			breakpoints: {
-			  // when window width is >= 320px
-			  320: {
-				slidesPerView: 1,
-				spaceBetween: 20
-			  },
-			  // when window width is >= 480px
-			  480: {
-				slidesPerView: 1,
-				spaceBetween: 30
-			  },
-				780: {
-				slidesPerView: 3,
-				spaceBetween: 30
-			  },
-			  // when window width is >= 640px
-			  1370: {
-				slidesPerView: 4,
-				spaceBetween: 40
-			  },
-			  1440: {
-				slidesPerView: 5,
-				spaceBetween: 40
-			  }
-			}
-		});
-	</script>
-
-	<script>
-		$(document).ready(function() {
-			var element = $(".header-nav");
-			var height_el = element.offset().top;
-			$(".header-nav").css({
-				"width": element.outerWidth(),
-				"height": element.outerHeight()
-			});
-			$(window).scroll(function() {
-				if($(window).scrollTop() > height_el) {
-					element.addClass("header-nav__fixed");
-				} else {
-					element.removeClass("header-nav__fixed");
-				}
-			});
-		});
-	</script>
-
-
-
-	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </body>
 </html>
